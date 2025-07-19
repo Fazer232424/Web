@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getafe RP - El Mejor Servidor de ERLC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            color: #ff6b6b;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23667eea" width="1200" height="800"/><circle cx="400" cy="200" r="100" fill="%23764ba2" opacity="0.3"/><circle cx="800" cy="600" r="150" fill="%23ff6b6b" opacity="0.2"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #ff6b6b;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 0.5rem;
+        }
+
+        .rules-list {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .rules-list ol {
+            padding-left: 1.5rem;
+        }
+
+        .rules-list li {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ff6b6b;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Getafe RP</a>
+            <ul class="nav-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#caracteristicas">Características</a></li>
+                <li><a href="#estadisticas">Estadísticas</a></li>
+                <li><a href="#reglas">Reglas</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>¡Bienvenido a Getafe RP!</h1>
+            <p>Vive la mejor experiencia de roleplay en ERLC - El servidor más realista de España</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary" onclick="openModal('connectModal')">Únete al Servidor</a>
+                <a href="https://discord.gg/4GyGEKeTBX" class="btn btn-secondary" target="_blank">Únete al Discord</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="caracteristicas">
+        <h2>¿Por qué elegir Getafe RP?</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🚔</div>
+                <h3>Departamentos Realistas</h3>
+                <p>Únete a la Policía, Bomberos, Servicios Médicos y otros departamentos oficiales de ERLC</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏢</div>
+                <h3>Trabajos Civiles</h3>
+                <p>Taxi, delivery, mecánico, seguridad y muchos otros trabajos civiles disponibles</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎭</div>
+                <h3>Personajes Únicos</h3>
+                <p>Crea tu historia personal con nuestro sistema de roleplay inmersivo en Roblox</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚗</div>
+                <h3>Vehículos Variados</h3>
+                <p>Desde coches civiles hasta vehículos de emergencia especializados</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏠</div>
+                <h3>Mapa Detallado</h3>
+                <p>Explora el mapa completo de ERLC con localizaciones realistas y detalladas</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Eventos Especiales</h3>
+                <p>Participa en operaciones especiales, entrenamientos y eventos únicos del servidor</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="estadisticas">
+        <h2>Nuestras Estadísticas</h2>
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">450+</div>
+                <div>Jugadores Activos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">25</div>
+                <div>Staff Profesional</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">99.9%</div>
+                <div>Tiempo Online</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2+</div>
+                <div>Años de Experiencia</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="reglas">
+        <h2>Reglas Básicas</h2>
+        <div class="rules-list">
+            <ol>
+                <li><strong>Respeto mutuo:</strong> Trata a todos los jugadores con respeto tanto dentro como fuera del personaje.</li>
+                <li><strong>Roleplay de calidad:</strong> Mantén siempre un alto nivel de interpretación y evita el meta-gaming.</li>
+                <li><strong>No RDM/VDM:</strong> Está prohibido matar o atropellar sin razón válida dentro del roleplay.</li>
+                <li><strong>Personaje coherente:</strong> Mantén la coherencia de tu personaje en todo momento.</li>
+                <li><strong>Uso del chat:</strong> Utiliza los canales apropiados para cada tipo de comunicación.</li>
+                <li><strong>Conflictos IC/OOC:</strong> Los problemas del personaje no deben afectar al jugador y viceversa.</li>
+                <li><strong>Moderación:</strong> Respeta las decisiones del staff y usa los canales oficiales para reportes.</li>
+                <li><strong>Contenido apropiado:</strong> No se permite contenido ofensivo, discriminatorio o inapropiado.</li>
+            </ol>
+        </div>
+    </section>
+
+    <footer class="footer" id="contacto">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Getafe RP</h3>
+                <p>El mejor servidor de ERLC en España. Únete a nuestra comunidad y vive aventuras únicas en Roblox.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <p>Discord: <a href="https://discord.gg/4GyGEKeTBX" target="_blank" style="color: #ff6b6b; text-decoration: none;">discord.gg/4GyGEKeTBX</a></p>
+                <p>Plataforma: Roblox - ERLC</p>
+                <p>Servidor: Getafe RP</p>
+            </div>
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <div class="social-links">
+                    <a href="https://discord.gg/4GyGEKeTBX" target="_blank" title="Discord">💬</a>
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="Twitter">🐦</a>
+                    <a href="#" title="YouTube">📺</a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);">
+            <p>&copy; 2025 Getafe RP. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal de Conexión -->
+    <div id="connectModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('connectModal')">&times;</span>
+            <h2>Únete al Servidor</h2>
+            <p>Para unirte a Getafe RP, necesitas tener <strong>Roblox</strong> instalado.</p>
+            <br>
+            <p><strong>Plataforma:</strong> Roblox</p>
+            <p><strong>Juego:</strong> Emergency Response: Liberty County (ERLC)</p>
+            <br>
+            <p><strong>Pasos para unirte:</strong></p>
+            <ol>
+                <li>Abre Roblox</li>
+                <li>Busca "Emergency Response: Liberty County"</li>
+                <li>Únete a nuestro Discord para obtener acceso</li>
+                <li>Sigue las instrucciones del staff</li>
+                <li>¡Empieza tu aventura en Getafe RP!</li>
+            </ol>
+            <br>
+            <div style="text-align: center;">
+                <a href="https://discord.gg/4GyGEKeTBX" target="_blank" class="btn btn-primary">Ir al Discord</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Discord -->
+    <div id="discordModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('discordModal')">&times;</span>
+            <h2>Únete a nuestro Discord</h2>
+            <p>¡Conecta con la comunidad de Getafe RP!</p>
+            <br>
+            <p>En nuestro Discord encontrarás:</p>
+            <ul>
+                <li>Chat general con otros jugadores</li>
+                <li>Soporte técnico 24/7</li>
+                <li>Anuncios de eventos</li>
+                <li>Solicitudes de whitelist</li>
+                <li>Reportes y sugerencias</li>
+            </ul>
+            <br>
+            <div style="text-align: center;">
+                <a href="https://discord.gg/4GyGEKeTBX" target="_blank" class="btn btn-primary">Ir al Discord</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling para los enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Efecto parallax suave en el hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Animación de números en las estadísticas
+        const animateNumbers = () => {
+            const numbers = document.querySelectorAll('.stat-number');
+            numbers.forEach(number => {
+                const finalValue = parseInt(number.textContent);
+                let currentValue = 0;
+                const increment = finalValue / 100;
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= finalValue) {
+                        number.textContent = finalValue + (number.textContent.includes('+') ? '+' : '') + (number.textContent.includes('%') ? '%' : '');
+                        clearInterval(timer);
+                    } else {
+                        number.textContent = Math.floor(currentValue);
+                    }
+                }, 20);
+            });
+        };
+
+        // Observador para activar animaciones cuando los elementos entran en vista
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                }
+            });
+        });
+
+        document.querySelectorAll('.feature-card, .stat-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Activar animación de números cuando la sección sea visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateNumbers();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('#estadisticas');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Funciones para los modales
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+
+        // Función para copiar al portapapeles
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('¡Copiado al portapapeles!');
+            });
+        }
+
+        // Navbar transparente/opaca según scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(0, 0, 0, 0.9)';
+            }
+        });
+    </script>
+</body>
+</html>
